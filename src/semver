@@ -201,7 +201,7 @@ function tag {
         touch $VERSION_FILE
         git log --pretty=format:" - %s" >> dummy
     else
-        git log --pretty=format:" - %s" "v$current"...HEAD >> dummy
+        git log --pretty=format:" - %s" "$current"...HEAD >> dummy
     fi
 
     if [ ! -f CHANGES.md ]; then
@@ -215,7 +215,7 @@ function tag {
     echo $new > $VERSION_FILE
     git add CHANGES.md $VERSION_FILE
     git commit -m "Release version $new"
-    git tag -a -m "Release version $new" "v$new"
+    git tag -a -m "Release version $new" "$new"
     git push origin --tags
 }
 
