@@ -1,7 +1,7 @@
 Git based semver shell utility
 ==============================
 
-This utility is a custom version of [semver-tool](https://github.com/fsaintjacques/semver-tool)].
+This utility is a custom version of [semver-tool](https://github.com/fsaintjacques/semver-tool).
 It allows you to manipulate version bumping in a project that follows the
 [semver](https://github.com/mojombo/semver) specification and automatically creates a git tag with each version.
 

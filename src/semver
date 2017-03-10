@@ -181,8 +181,8 @@ function command-compare {
 function get_current_version {
   local current;
 
-  if [ -f .version ]; then
-    current=$(<.version)
+  if [ -f $VERSION_FILE ]; then
+    current=$(<$VERSION_FILE)
   else
     current=$NO_VERSION
   fi
@@ -198,21 +198,25 @@ function tag {
     
     echo "Version $new:" > dummy
     if [ $current == $NO_VERSION ]; then
+        touch $VERSION_FILE
         git log --pretty=format:" - %s" >> dummy
     else
         git log --pretty=format:" - %s" "v$current"...HEAD >> dummy
+    fi
+
+    if [ ! -f CHANGES.md ]; then
+        touch CHANGES.md
     fi
 
     echo "" >> dummy
     echo "" >> dummy
     cat CHANGES.md >> dummy
     mv dummy CHANGES.md
+    echo $new > $VERSION_FILE
     git add CHANGES.md $VERSION_FILE
     git commit -m "Release version $new"
     git tag -a -m "Release version $new" "v$new"
     git push origin --tags
-
-    echo $new > $VERSION_FILE
 }
 
 case $# in
