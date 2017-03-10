@@ -1,0 +1,13 @@
+{
+    "name": "jmirandase/git-semver-tool",
+    "description": "Git based semver tool",
+    "license": "BSD-3-Clause",
+    "keywords": [
+        "semver",
+        "git",
+        "utility",
+        "bump",
+        "version"
+    ],
+    "bin": [ "bin/semver" ]
+}
